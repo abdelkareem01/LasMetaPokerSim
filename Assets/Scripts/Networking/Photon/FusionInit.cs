@@ -24,7 +24,7 @@ public class FusionInit : MonoBehaviour
 
         FusionLogger fusionLogger = new FusionLogger();
         runner.AddCallbacks(fusionLogger);
-        SceneManager.LoadScene("Home");
+        await SceneManager.LoadSceneAsync("Main");
     }
 
 }

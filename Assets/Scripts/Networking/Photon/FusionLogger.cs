@@ -36,6 +36,16 @@ public class FusionLogger : INetworkRunnerCallbacks
         Debug.Log($"[Fusion] Network runner was shutdown. Reason: {shutdownReason}");
     }
 
+    public void OnSceneLoadDone(NetworkRunner runner) 
+    {
+        Debug.Log($"[Fusion] Scene loaded: {runner.SceneManager.MainRunnerScene}");
+    }
+
+    public void OnSceneLoadStart(NetworkRunner runner)
+    {
+        Debug.Log($"[Fusion] Loading scene: {runner.SceneManager.MainRunnerScene}");
+    }
+
     public void OnInput(NetworkRunner runner, NetworkInput input){ }
 
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token) { }
@@ -53,10 +63,6 @@ public class FusionLogger : INetworkRunnerCallbacks
     public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress) { }
 
     public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ReliableKey key, ArraySegment<byte> data) { }
-
-    public void OnSceneLoadDone(NetworkRunner runner) { }
-
-    public void OnSceneLoadStart(NetworkRunner runner) { }
 
     public void OnSessionListUpdated(NetworkRunner runner, List<SessionInfo> sessionList) { }
 
