@@ -15,7 +15,7 @@ public class DealerController : NetworkBehaviour
         MainEventBus.OnRequestJump += RPC_Jump;
     }
 
-    [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+    [Rpc(RpcSources.All, RpcTargets.All)]
     private void RPC_Jump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);

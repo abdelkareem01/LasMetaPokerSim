@@ -39,6 +39,7 @@ public class FusionInit : MonoBehaviour
         FusionLogger fusionLogger = new FusionLogger();
         runner.AddCallbacks(fusionLogger);
 
+        if(runner.IsSceneAuthority)
         await runner.LoadScene(SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath("Assets/Scenes/Main.unity")), LoadSceneMode.Single);
 
         if (result.Ok)

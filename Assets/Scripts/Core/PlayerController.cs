@@ -11,6 +11,8 @@ public class PlayerController : NetworkBehaviour
     {
         if(HasInputAuthority)
         Runner.AddCallbacks(playerInputHandler);
+
+        Debug.Log($"[PlayerController] Spawned | InputAuthority: {Object.InputAuthority} | IsLocal: {HasInputAuthority}");
     }
 
 
