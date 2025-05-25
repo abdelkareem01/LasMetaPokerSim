@@ -1,6 +1,11 @@
 using Fusion;
 
+enum PlayerButtons
+{
+    Space = 0
+}
+
 public struct PlayerInputData : INetworkInput
 {
-    public bool jumpPressed;
+    public NetworkButtons playerButtons;
 }
