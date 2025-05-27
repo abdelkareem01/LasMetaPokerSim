@@ -543,10 +543,6 @@ PrefabInstance:
       value: Dealer
       objectReference: {fileID: 0}
     - target: {fileID: 8040618884839141292, guid: 286f887b4f903634b93d29e0f62bc3da, type: 3}
-      propertyPath: Flags
-      value: 262145
-      objectReference: {fileID: 0}
-    - target: {fileID: 8040618884839141292, guid: 286f887b4f903634b93d29e0f62bc3da, type: 3}
       propertyPath: SortKey
       value: 208709947
       objectReference: {fileID: 0}
