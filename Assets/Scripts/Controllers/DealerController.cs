@@ -12,7 +12,7 @@ public class DealerController : NetworkBehaviour
 
     public override void Spawned()
     {
-        MainEventBus.OnRequestJump += RPC_Jump;
+        //MainEventBus.OnRequestDeal += RPC_Jump;
     }
 
     [Rpc(RpcSources.All, RpcTargets.All)]
@@ -23,6 +23,6 @@ public class DealerController : NetworkBehaviour
 
     public override void Despawned(NetworkRunner runner, bool hasState)
     {
-        MainEventBus.OnRequestJump -= RPC_Jump;
+        MainEventBus.OnRequestDeal -= RPC_Jump;
     }
 }

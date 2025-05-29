@@ -62,4 +62,9 @@ public class NetworkManager
     {
         networkRunner.Spawn(player, position, Quaternion.identity, networkRunner.LocalPlayer);
     }
+
+    public float GetDeltaTime()
+    {
+        return networkRunner.DeltaTime;
+    }
 }
