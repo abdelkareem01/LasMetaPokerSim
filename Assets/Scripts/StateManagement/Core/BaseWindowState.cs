@@ -2,8 +2,9 @@ using UnityEngine;
 
 public enum WindowStateType
 {
-    Popup = 0,
-    Menu = 1,
+    GameplayCanvas = 0,
+    PopupCanvas = 1
+    
 }
 
 

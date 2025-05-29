@@ -7,10 +7,17 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField] private PlayerInputHandler playerInputHandler;
 
+    private NetworkManager networkManager;
+
+    public void Awake()
+    {
+        networkManager = Main.instance.networkManager;
+    }
+
     public override void Spawned()
     {
         if(HasInputAuthority)
-        Runner.AddCallbacks(playerInputHandler);
+        networkManager.AddCallbacks(playerInputHandler);
 
         Debug.Log($"[PlayerController] Spawned | InputAuthority: {Object.InputAuthority} | IsLocal: {HasInputAuthority}");
     }

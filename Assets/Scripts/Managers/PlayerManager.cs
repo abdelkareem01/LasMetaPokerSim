@@ -12,6 +12,10 @@ public class PlayerManager
     public void Init()
     {
         networkManager = Main.instance.networkManager;
+        playerPrefab = Main.instance.data.playerData.playerPrefab;
+
+        MainEventBus.OnPlayerJoined += PlayerJoined;
+        MainEventBus.OnGameplayLoaded += SceneLoadDone;
     }
 
     public void PlayerJoined(PlayerRef player)
@@ -23,7 +27,7 @@ public class PlayerManager
         }
     }
 
-    public void SceneLoadDone(GameStateType scene)
+    public void SceneLoadDone()
     {
         sceneLoaded = true;
         SpawnPlayer();
@@ -34,7 +38,7 @@ public class PlayerManager
         if (playerJoined && sceneLoaded)
         {
             Debug.Log("[Fusion] Spawned player");
-            networkManager.SpawnPlayer(null, new Vector3(-6.69f, 5.48f, -10.49f));
+            networkManager.SpawnPlayer(playerPrefab, new Vector3(-6.69f, 5.48f, -10.49f));
         }
     }
 }

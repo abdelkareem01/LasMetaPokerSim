@@ -1,14 +1,15 @@
 using Fusion;
 using Fusion.Sockets;
-using System.Collections.Generic;
-using System;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class FusionLogger : BaseNetworkRunnerCallbacks
+
+public class FusionCallbacks : BaseNetworkRunnerCallbacks
 {
     public override void OnConnectedToServer(NetworkRunner runner)
     {
-        Debug.Log($"[Fusion] Connected to server successfully! Current active players: " + runner.ActivePlayers.ToString());
+        Debug.Log($"[Fusion] Connected to server successfully! Current active players: " + runner.ActivePlayers.Count());
     }
 
     public override void OnConnectFailed(NetworkRunner runner, NetAddress remoteAddress, NetConnectFailedReason reason)
@@ -24,6 +25,7 @@ public class FusionLogger : BaseNetworkRunnerCallbacks
     public override void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
         Debug.Log($"[Fusion] Player joined: {player}");
+        MainEventBus.OnPlayerJoined?.Invoke(player);
     }
 
     public override void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
@@ -38,11 +40,16 @@ public class FusionLogger : BaseNetworkRunnerCallbacks
 
     public override void OnSceneLoadDone(NetworkRunner runner) 
     {
-        Debug.Log($"[Fusion] Scene loaded: {runner.TryGetSceneInfo(out NetworkSceneInfo info)}");
-    }
+        Scene loadedScene = SceneManager.GetActiveScene();
+        Debug.Log($"[Fusion] Scene loaded: {loadedScene.name}");
 
+        if (loadedScene.name == GameStateType.Gameplay.ToString())
+        MainEventBus.OnGameplayLoaded?.Invoke();
+    }
+                   
+    
     public override void OnSceneLoadStart(NetworkRunner runner)
     {
-        Debug.Log($"[Fusion] Loading new scene");
+        Debug.Log($"[Fusion] Loading new scene...");
     }
 }

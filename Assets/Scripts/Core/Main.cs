@@ -4,22 +4,27 @@ using UnityEngine;
 public class Main : MonoBehaviour
 {
     public static Main instance;
+
     private bool initialised;
 
     public GameStateManager gameStateManager;
     public WindowStateManager windowStateManager;
     public NetworkManager networkManager;
     public PlayerManager playerManager;
-    public FusionLogger logger;
+    public FusionCallbacks callbacks;
+
+    [HideInInspector]
+    public DataCollection data;
 
     [SerializeField]
-    private GameObject networkRunnerGO, playerPrefabs;
+    private GameObject networkRunnerGO;
 
     private void Awake()
     {
         instance = this;
         DontDestroyOnLoad(this);
         DontDestroyOnLoad(networkRunnerGO);
+        data = Resources.Load<DataCollection>(DataCollection.path);
     }
 
     void Start()
@@ -53,7 +58,7 @@ public class Main : MonoBehaviour
         gameStateManager = new GameStateManager();
         windowStateManager = new WindowStateManager();
         playerManager = new PlayerManager();
-        logger = new FusionLogger();
+        callbacks = new FusionCallbacks();
     }
 
     private void InitObjects()
@@ -61,7 +66,7 @@ public class Main : MonoBehaviour
         gameStateManager.Init();
         windowStateManager.Init();
         networkManager.Init();
-        networkManager.AddCallbacks(logger);
+        networkManager.AddCallbacks(callbacks);
         playerManager.Init();
         initialised = true;
     }

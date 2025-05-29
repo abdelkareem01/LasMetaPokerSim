@@ -6,5 +6,6 @@ public class MainEventBus
     public static Action OnRequestJump;
     public static Action OnNetworkReady;
     public static Action<PlayerRef> OnPlayerJoined;
+    public static Action OnGameplayLoaded;
     public static Action<GameStateType> OnStateChanged;
 }

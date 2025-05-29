@@ -33,7 +33,7 @@ public class FusionInit : MonoBehaviour
             ObjectProvider = objectProvider,
         });
 
-        FusionLogger fusionLogger = new FusionLogger();
+        FusionCallbacks fusionLogger = new FusionCallbacks();
         runner.AddCallbacks(fusionLogger);
 
         if(runner.IsSceneAuthority)

@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public abstract class BaseStateManager<T> where T : BaseState<T>
 {
     protected T currentState;
 
-    internal Dictionary<Enum, T> states;
+    protected Dictionary<GameStateType, T> states = new();
 
     public virtual void Init(){}
 
@@ -26,6 +25,7 @@ public abstract class BaseStateManager<T> where T : BaseState<T>
             currentState = nextState;
             currentState.OnEnter(previousState, data);
 
+            if(currentState.stateType != GameStateType.Startup)
             MainEventBus.OnStateChanged?.Invoke(type);
         }
         else 

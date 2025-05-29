@@ -8,6 +8,8 @@ public class NetworkManager
     private readonly NetworkRunner networkRunner;
     private readonly NetworkSceneManagerDefault networkSceneManager;
     private readonly NetworkObjectProviderDefault networkObjectProvider;
+    
+    private NetworkData networkData;
 
     public NetworkManager(NetworkRunner runner, NetworkSceneManagerDefault sceneManager, NetworkObjectProviderDefault objectProvider)
     {
@@ -20,12 +22,14 @@ public class NetworkManager
     {
         MainEventBus.OnStateChanged += LoadScene;
 
+        networkData = Main.instance.data.networkData;
+
         networkRunner.ProvideInput = true;
 
         var result = await networkRunner.StartGame(new StartGameArgs
         {
-            GameMode = GameMode.Shared,
-            SessionName = "LasMetaDemo",
+            GameMode = networkData.GameMode,
+            SessionName = networkData.SessionName,
             SceneManager = networkSceneManager,
             ObjectProvider = networkObjectProvider,
         });
