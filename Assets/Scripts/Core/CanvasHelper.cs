@@ -15,6 +15,7 @@ public class CanvasHelper : MonoBehaviour
     
     [Header("Startup Canvas:")]
     public GameObject startup_Canvas;
+    public GameObject startup_Loadingtxt;
 
     private void Awake()
     {

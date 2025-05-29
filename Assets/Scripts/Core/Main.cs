@@ -14,6 +14,7 @@ public class Main : MonoBehaviour
     public NetworkManager networkManager;
     public PlayerManager playerManager;
     public FusionCallbacks callbacks;
+    public AudioSource audio;
 
     [HideInInspector]
     public DataCollection data;

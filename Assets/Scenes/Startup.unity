@@ -293,6 +293,7 @@ MonoBehaviour:
   login_exitBtn: {fileID: 3154224}
   gamplayHUD_Canvas: {fileID: 497628157}
   startup_Canvas: {fileID: 1927072914}
+  startup_Loadingtxt: {fileID: 1026746495}
 --- !u!1 &192480145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,7 +1138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1026746496
 RectTransform:
   m_ObjectHideFlags: 0

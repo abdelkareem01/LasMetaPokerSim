@@ -5,5 +5,5 @@ using System;
 public class GameData 
 {
     public Vector3[] cardSlotsPos;
-    public GameObject[] cardPrefab;
+    public GameObject cardPrefab;
 }

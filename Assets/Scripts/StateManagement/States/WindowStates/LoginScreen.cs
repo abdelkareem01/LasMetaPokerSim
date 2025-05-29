@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,13 +19,14 @@ public class LoginScreen : BaseWindowState
         canvasRoot.SetActive(true);
         startBtn.onClick.AddListener(OnResumeClicked);
         exitBtn.onClick.AddListener(OnQuitClicked);
+        if (!Main.instance.networkManager.IsSceneAuthority()) StateManager.ChangeState(WindowStateType.GameplayHUD);
     }
 
     public override void OnExit(BaseWindowState nextState, object data)
     {
+        canvasRoot.SetActive(false);
         startBtn.onClick.RemoveListener(OnResumeClicked);
         exitBtn.onClick.RemoveListener(OnQuitClicked);
-        canvasRoot.SetActive(false);
     }
 
     private void OnResumeClicked()

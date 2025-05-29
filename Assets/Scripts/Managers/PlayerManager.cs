@@ -38,7 +38,7 @@ public class PlayerManager
         if (playerJoined && sceneLoaded)
         {
             Debug.Log("[Fusion] Spawned player");
-            networkManager.SpawnPlayer(playerPrefab, new Vector3(-6.69f, 5.48f, -10.49f));
+            networkManager.SpawnPlayer(playerPrefab, new Vector3(5.67f, 5.48f, 2.7f));
         }
     }
 }

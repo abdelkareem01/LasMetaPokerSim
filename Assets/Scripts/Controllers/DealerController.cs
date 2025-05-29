@@ -1,7 +1,7 @@
 using Fusion;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Unity.VisualScripting;
+using DG.Tweening;
 using UnityEngine;
 
 public class DealerController : NetworkBehaviour
@@ -27,8 +27,10 @@ public class DealerController : NetworkBehaviour
 
     private void HandleDealRequest(PlayerRef requester)
     {
-        if (HasStateAuthority && !_isDealing)
+        if (!_isDealing)
         {
+            Debug.Log($"[Dealer Controller: Dealing cards...]");
+
             RPC_DealCards(requester);
         }
     }
@@ -38,20 +40,18 @@ public class DealerController : NetworkBehaviour
     {
         if (_isDealing)
             return;
-
-        if (!HasStateAuthority)
-            return;
-
+        
         _isDealing = true;
 
-        animator.Play("Dealing");
-
-        await Task.Delay(300);
+        animator.Play("Deal");
 
         for (int i = 0; i < 4; i++)
         {
+            await Task.Delay(300);
             DealCardTo(player);
         }
+
+        await Task.Delay(1000);
 
         animator.Play("Idle");
 
@@ -75,8 +75,7 @@ public class DealerController : NetworkBehaviour
             return;
         }
 
-        // Spawn a card object at targetPos (networked spawn)
-        networkManager.SpawnEntity(_cardPrefab, transform.position);
+       var card = networkManager.SpawnEntity(_cardPrefab, targetPos);
     }
 
 }

@@ -11,6 +11,7 @@ public class StartupScreen : BaseWindowState
     public override void OnEnter(BaseWindowState previousState, object data)
     {
         canvasRoot.SetActive(true);
+        CanvasHelper.Instance.startup_Loadingtxt.SetActive(true);
         MainEventBus.OnNetworkReady += () =>
         {
             StateManager.ChangeState(WindowStateType.LoginScreen);
@@ -19,6 +20,7 @@ public class StartupScreen : BaseWindowState
 
     public override void OnExit(BaseWindowState nextState, object data)
     {
+        CanvasHelper.Instance.startup_Loadingtxt.SetActive(false);
         canvasRoot.SetActive(false);
     }
    

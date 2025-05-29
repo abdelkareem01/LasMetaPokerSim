@@ -45,8 +45,17 @@ public class NetworkManager
 
     private async void LoadScene(GameStateType stateType)
     {
-        if(stateType != GameStateType.Startup)
-       await networkRunner.LoadScene(SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath($"Assets/Scenes/{stateType.ToString()}.unity")), LoadSceneMode.Single);
+        if (!networkRunner.IsSceneAuthority)
+            return;
+
+        if (stateType != GameStateType.Startup)
+        {
+            var sceneRef = SceneRef.FromIndex(
+                SceneUtility.GetBuildIndexByScenePath($"Assets/Scenes/{stateType.ToString()}.unity")
+            );
+
+            await networkRunner.LoadScene(sceneRef, LoadSceneMode.Single);
+        }
     }
 
     public bool IsLocalPlayer(PlayerRef player)
@@ -64,13 +73,18 @@ public class NetworkManager
         networkRunner.Spawn(player, position, Quaternion.identity, networkRunner.LocalPlayer);
     }
 
-    public void SpawnEntity(GameObject entity, Vector3 position)
+    public NetworkObject SpawnEntity(GameObject entity, Vector3 position)
     {
-        networkRunner.Spawn(entity, position, Quaternion.identity);
+       return networkRunner.Spawn(entity, position, Quaternion.identity);
     }
 
     public float GetDeltaTime()
     {
         return networkRunner.DeltaTime;
+    }
+
+    public bool IsSceneAuthority()
+    {
+        return networkRunner.IsSceneAuthority;
     }
 }
