@@ -6,8 +6,9 @@ public class CardFlicker : NetworkBehaviour
     [SerializeField]
     private AudioClip flicker;
 
-    public override void Spawned()
+    void Awake()
     {
-        Main.instance.audio.PlayOneShot(flicker);
+        Main.instance.audio.clip = flicker;
+        Main.instance.audio.Play();
     }
 }
