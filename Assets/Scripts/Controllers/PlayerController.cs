@@ -47,7 +47,7 @@ public class PlayerController : NetworkBehaviour
 
         xMouseOffset = Mathf.Clamp(xMouseOffset, -85f, 85f);
 
-        transform.rotation = Quaternion.Euler(0, yMouseOffset, 0); // smooth + local
+        transform.rotation = Quaternion.Euler(0, yMouseOffset, 0);
 
         mainCam.transform.rotation = Quaternion.Euler(xMouseOffset, yMouseOffset, 0f);
 
@@ -75,7 +75,7 @@ public class PlayerController : NetworkBehaviour
 
         if (pressed.IsSet(PlayerButtons.RequestDeal))
         {
-            MainEventBus.OnRequestDeal?.Invoke();
+            MainEventBus.OnRequestDeal?.Invoke(networkManager.GetPlayer());
         }
     }
 

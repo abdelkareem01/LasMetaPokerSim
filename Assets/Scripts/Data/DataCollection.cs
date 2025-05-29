@@ -7,4 +7,5 @@ public class DataCollection : ScriptableObject
 
     public PlayerData playerData;
     public NetworkData networkData;
+    public GameData gameData;
 }

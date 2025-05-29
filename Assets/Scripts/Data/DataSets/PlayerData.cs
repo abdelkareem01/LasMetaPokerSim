@@ -5,5 +5,5 @@ using System;
 public class PlayerData
 {
     public GameObject playerPrefab;
-    public Vector3[] emptySpawnPositions;
+    public Vector3 lastWorldPosition;
 }

@@ -64,6 +64,11 @@ public class NetworkManager
         networkRunner.Spawn(player, position, Quaternion.identity, networkRunner.LocalPlayer);
     }
 
+    public void SpawnEntity(GameObject entity, Vector3 position)
+    {
+        networkRunner.Spawn(entity, position, Quaternion.identity);
+    }
+
     public float GetDeltaTime()
     {
         return networkRunner.DeltaTime;

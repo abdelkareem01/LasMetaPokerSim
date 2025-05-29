@@ -1,4 +1,5 @@
 using Fusion;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Main : MonoBehaviour
@@ -19,6 +20,8 @@ public class Main : MonoBehaviour
 
     [SerializeField]
     private GameObject networkRunnerGO;
+
+    public Dictionary<PlayerRef, Vector3> _playerCardPositions = new();
 
     private void Awake()
     {

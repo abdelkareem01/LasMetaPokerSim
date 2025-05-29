@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: DataCollection
   m_EditorClassIdentifier: 
   playerData:
-    playerPrefab: {fileID: 5155036447336031038, guid: 6fa9abcafe4fd4448bcde7c8ec6b112f, type: 3}
-    emptySpawnPositions: []
+    playerPrefab: {fileID: 0}
+    lastWorldPosition: {x: 0, y: 0, z: 0}
   networkData:
     SessionName: LasMetaPokerPrototype
     GameMode: 2
+  gameData:
+    playerCardPositions:
+    - {x: -8.61, y: 5.5500007, z: -10.57}
+    - {x: -7, y: 5.5500007, z: -10.57}

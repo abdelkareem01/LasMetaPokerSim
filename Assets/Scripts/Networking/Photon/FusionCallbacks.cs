@@ -26,6 +26,7 @@ public class FusionCallbacks : BaseNetworkRunnerCallbacks
     {
         Debug.Log($"[Fusion] Player joined: {player}");
         MainEventBus.OnPlayerJoined?.Invoke(player);
+        MainEventBus.OnAssignCardSlots?.Invoke(runner);
     }
 
     public override void OnPlayerLeft(NetworkRunner runner, PlayerRef player)

@@ -1,7 +1,9 @@
+using UnityEngine;
 using System;
 
 [Serializable]
 public class GameData 
 {
-    //todo
+    public Vector3[] cardSlotsPos;
+    public GameObject[] cardPrefab;
 }
