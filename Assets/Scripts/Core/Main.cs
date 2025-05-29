@@ -7,6 +7,7 @@ public class Main : MonoBehaviour
 
     private bool initialised;
 
+    [Header("Main Managers")]
     public GameStateManager gameStateManager;
     public WindowStateManager windowStateManager;
     public NetworkManager networkManager;

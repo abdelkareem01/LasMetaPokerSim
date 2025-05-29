@@ -2,21 +2,25 @@ using UnityEngine;
 
 public enum WindowStateType
 {
-    GameplayCanvas = 0,
-    PopupCanvas = 1
-    
+     StartupScreen = 0,
+     GameplayHUD = 1,
+     LoginScreen = 2,
 }
-
 
 public class BaseWindowState : BaseState<BaseWindowState>
 {
-    protected BaseWindowState(BaseStateManager<BaseWindowState> stateManager) : base(stateManager) { }
+    protected GameObject canvasRoot;
+
+    protected BaseWindowState(BaseStateManager<BaseWindowState> stateManager, GameObject canvas) : base(stateManager)
+    {
+        canvasRoot = canvas;
+    }
 
     public override void OnEnter(BaseWindowState previousState, object data)
     {
     }
 
-    public override void OnExit(BaseWindowState previousState, object data)
+    public override void OnExit(BaseWindowState nextState, object data)
     {
     }
 }

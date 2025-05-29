@@ -6,7 +6,6 @@ public class PlayerController : NetworkBehaviour
     [Networked] public NetworkButtons Buttons { get; set; }
 
     private NetworkManager networkManager;
-    private bool isGrounded = false;
 
     [SerializeField] private PlayerInputHandler playerInputHandler;
     [SerializeField] private CharacterController characterController;

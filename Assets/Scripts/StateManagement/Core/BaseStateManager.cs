@@ -5,7 +5,9 @@ public abstract class BaseStateManager<T> where T : BaseState<T>
 {
     protected T currentState;
 
-    protected Dictionary<GameStateType, T> states = new();
+    protected Dictionary<GameStateType, T> gameStates = new();
+
+    protected Dictionary<WindowStateType, T> windowStates = new();
 
     public virtual void Init(){}
 
@@ -15,22 +17,7 @@ public abstract class BaseStateManager<T> where T : BaseState<T>
 
     public virtual void OnUpdate() => currentState?.OnUpdate();
 
-    public virtual void ChangeState(GameStateType type, object data = null)
-    {
-        if (states.TryGetValue(type, out T nextState))
-        {
-            var previousState = currentState;
+    public virtual void ChangeState(GameStateType type, object data = null){}
 
-            currentState?.OnExit(nextState, data);
-            currentState = nextState;
-            currentState.OnEnter(previousState, data);
-
-            if(currentState.stateType != GameStateType.Startup)
-            MainEventBus.OnStateChanged?.Invoke(type);
-        }
-        else 
-        {
-            throw new NotImplementedException($"[StateManagement]: Error! {type.ToString()}State not implemented in: {GetType().Name}");        
-        }
-    }
+    public virtual void ChangeState(WindowStateType type, object data = null){}
 }

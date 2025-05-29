@@ -45,6 +45,7 @@ public class NetworkManager
 
     private async void LoadScene(GameStateType stateType)
     {
+        if(stateType != GameStateType.Startup)
        await networkRunner.LoadScene(SceneRef.FromIndex(SceneUtility.GetBuildIndexByScenePath($"Assets/Scenes/{stateType.ToString()}.unity")), LoadSceneMode.Single);
     }
 
