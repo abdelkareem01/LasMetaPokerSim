@@ -1,44 +1,48 @@
-using UnityEngine;
-using Fusion;
-
-public class PlayerManager
+namespace Scripts.Managers
 {
-    private bool playerJoined = false;
-    private bool sceneLoaded = false;
+    using UnityEngine;
+    using Fusion;
+    using Scripts.Core;
 
-    private NetworkManager networkManager;
-    private GameObject playerPrefab;
-
-    public void Init()
+    public class PlayerManager
     {
-        networkManager = Main.instance.networkManager;
-        playerPrefab = Main.instance.data.playerData.playerPrefab;
+        private bool playerJoined = false;
+        private bool sceneLoaded = false;
 
-        MainEventBus.OnPlayerJoined += PlayerJoined;
-        MainEventBus.OnGameplayLoaded += SceneLoadDone;
-    }
+        private NetworkManager networkManager;
+        private GameObject playerPrefab;
 
-    public void PlayerJoined(PlayerRef player)
-    {
-        if (networkManager.IsLocalPlayer(player))
+        public void Init()
         {
-            playerJoined = true;
+            networkManager = Main.instance.networkManager;
+            playerPrefab = Main.instance.data.playerData.playerPrefab;
+
+            MainEventBus.OnPlayerJoined += PlayerJoined;
+            MainEventBus.OnGameplayLoaded += SceneLoadDone;
+        }
+
+        public void PlayerJoined(PlayerRef player)
+        {
+            if (networkManager.IsLocalPlayer(player))
+            {
+                playerJoined = true;
+                SpawnPlayer();
+            }
+        }
+
+        public void SceneLoadDone()
+        {
+            sceneLoaded = true;
             SpawnPlayer();
         }
-    }
 
-    public void SceneLoadDone()
-    {
-        sceneLoaded = true;
-        SpawnPlayer();
-    }
-
-    private void SpawnPlayer()
-    {
-        if (playerJoined && sceneLoaded)
+        private void SpawnPlayer()
         {
-            Debug.Log("[Fusion] Spawned player");
-            networkManager.SpawnPlayer(playerPrefab, new Vector3(5.67f, 5.48f, 2.7f));
+            if (playerJoined && sceneLoaded)
+            {
+                Debug.Log("[Fusion] Spawned player");
+                networkManager.SpawnPlayer(playerPrefab, new Vector3(5.67f, 5.48f, 2.7f));
+            }
         }
     }
 }

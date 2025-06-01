@@ -1,9 +1,12 @@
-using Fusion;
-using System;
-
-[Serializable]
-public class NetworkData
+namespace Scripts.Data.DataSets
 {
-    public string SessionName = "LasMetaPokerPrototype";
-    public GameMode GameMode = GameMode.Shared;
+    using Fusion;
+    using System;
+
+    [Serializable]
+    public class NetworkData
+    {
+        public string SessionName = "LasMetaPokerPrototype";
+        public GameMode GameMode = GameMode.Shared;
+    }
 }

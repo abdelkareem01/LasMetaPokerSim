@@ -1,27 +1,32 @@
-using UnityEngine;
-using UnityEngine.UI;
-
-public class StartupScreen : BaseWindowState
+namespace Scripts.StateManagement.States.WindowStates
 {
-    public StartupScreen(WindowStateManager manager, GameObject canvas)
-        : base(manager, canvas)
-    {
-    }
+    using Scripts.Core;
+    using Scripts.StateManagement.Core;
+    using Scripts.StateManagement.StateManagers;
+    using UnityEngine;
 
-    public override void OnEnter(BaseWindowState previousState, object data)
+    public class StartupScreen : BaseWindowState
     {
-        canvasRoot.SetActive(true);
-        CanvasHelper.Instance.startup_Loadingtxt.SetActive(true);
-        MainEventBus.OnNetworkReady += () =>
+        public StartupScreen(WindowStateManager manager, GameObject canvas)
+            : base(manager, canvas)
         {
-            StateManager.ChangeState(WindowStateType.HomeScreen);
-        };
-    }
+        }
 
-    public override void OnExit(BaseWindowState nextState, object data)
-    {
-        CanvasHelper.Instance.startup_Loadingtxt.SetActive(false);
-        canvasRoot.SetActive(false);
+        public override void OnEnter(BaseWindowState previousState, object data)
+        {
+            canvasRoot.SetActive(true);
+            CanvasHelper.Instance.startup_Loadingtxt.SetActive(true);
+            MainEventBus.OnNetworkReady += () =>
+            {
+                StateManager.ChangeState(WindowStateType.HomeScreen);
+            };
+        }
+
+        public override void OnExit(BaseWindowState nextState, object data)
+        {
+            CanvasHelper.Instance.startup_Loadingtxt.SetActive(false);
+            canvasRoot.SetActive(false);
+        }
+
     }
-   
 }

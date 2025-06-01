@@ -1,15 +1,20 @@
-using UnityEngine.SceneManagement;
+using Scripts.Core;
+using Scripts.StateManagement.Core;
+using Scripts.StateManagement.StateManagers;
 
-public class StartupState : BaseGameState
+namespace Scripts.StateManagement.States.GameStates
 {
-    public StartupState(GameStateManager stateManager) : base(stateManager)
+    public class StartupState : BaseGameState
     {
-        stateType = GameStateType.Startup;
-        sceneName = stateType.ToString();
-
-        MainEventBus.OnNetworkReady += () =>
+        public StartupState(GameStateManager stateManager) : base(stateManager)
         {
-            StateManager.ChangeState(GameStateType.Home);
-        };
+            stateType = GameStateType.Startup;
+            sceneName = stateType.ToString();
+
+            MainEventBus.OnNetworkReady += () =>
+            {
+                StateManager.ChangeState(GameStateType.Home);
+            };
+        }
     }
 }

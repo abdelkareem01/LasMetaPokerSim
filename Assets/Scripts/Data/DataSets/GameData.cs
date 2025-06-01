@@ -1,9 +1,12 @@
-using UnityEngine;
-using System;
-
-[Serializable]
-public class GameData 
+namespace Scripts.Data.DataSets
 {
-    public Vector3[] cardSlotsPos;
-    public GameObject cardPrefab;
+    using UnityEngine;
+    using System;
+
+    [Serializable]
+    public class GameData
+    {
+        public Vector3[] cardSlotsPos;
+        public GameObject cardPrefab;
+    }
 }

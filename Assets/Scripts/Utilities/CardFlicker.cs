@@ -1,17 +1,21 @@
-using Fusion;
-using UnityEngine;
-
-public class CardFlicker : NetworkBehaviour
+namespace Scripts.Utilities
 {
-    [SerializeField]
-    private AudioClip flicker;
+    using Fusion;
+    using Scripts.Core;
+    using UnityEngine;
 
-    public override void Spawned()
+    public class CardFlicker : NetworkBehaviour
     {
-        if (!HasStateAuthority && !HasInputAuthority)
-            return;
+        [SerializeField]
+        private AudioClip flicker;
 
-        var src = Main.instance.mainAudioSrc;
-        src.PlayOneShot(flicker);
+        public override void Spawned()
+        {
+            if (!HasStateAuthority && !HasInputAuthority)
+                return;
+
+            var src = Main.instance.mainAudioSrc;
+            src.PlayOneShot(flicker);
+        }
     }
 }

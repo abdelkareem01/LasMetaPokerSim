@@ -1,8 +1,14 @@
-public class HomeState : BaseGameState
+using Scripts.StateManagement.Core;
+using Scripts.StateManagement.StateManagers;
+
+namespace Scripts.StateManagement.States.GameStates
 {
-    public HomeState(GameStateManager stateManager) : base(stateManager) 
+    public class HomeState : BaseGameState
     {
-        stateType = GameStateType.Home;
-        sceneName = stateType.ToString();
+        public HomeState(GameStateManager stateManager) : base(stateManager)
+        {
+            stateType = GameStateType.Home;
+            sceneName = stateType.ToString();
+        }
     }
 }

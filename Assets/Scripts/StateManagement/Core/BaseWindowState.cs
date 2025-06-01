@@ -1,26 +1,29 @@
-using UnityEngine;
-
-public enum WindowStateType
+namespace Scripts.StateManagement.Core
 {
-     StartupScreen = 0,
-     GameplayHUD = 1,
-     HomeScreen = 2,
-}
+    using UnityEngine;
 
-public class BaseWindowState : BaseState<BaseWindowState>
-{
-    protected GameObject canvasRoot;
-
-    protected BaseWindowState(BaseStateManager<BaseWindowState> stateManager, GameObject canvas) : base(stateManager)
+    public enum WindowStateType
     {
-        canvasRoot = canvas;
+        StartupScreen = 0,
+        GameplayHUD = 1,
+        HomeScreen = 2,
     }
 
-    public override void OnEnter(BaseWindowState previousState, object data)
+    public class BaseWindowState : BaseState<BaseWindowState>
     {
-    }
+        protected GameObject canvasRoot;
 
-    public override void OnExit(BaseWindowState nextState, object data)
-    {
+        protected BaseWindowState(BaseStateManager<BaseWindowState> stateManager, GameObject canvas) : base(stateManager)
+        {
+            canvasRoot = canvas;
+        }
+
+        public override void OnEnter(BaseWindowState previousState, object data)
+        {
+        }
+
+        public override void OnExit(BaseWindowState nextState, object data)
+        {
+        }
     }
 }

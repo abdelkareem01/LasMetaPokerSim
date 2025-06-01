@@ -1,35 +1,39 @@
-using Fusion;
-using System.Collections.Generic;
-using UnityEngine;
-using static Unity.Collections.Unicode;
-
-public class GameplayState : BaseGameState
+namespace Scripts.StateManagement.States.GameStates
 {
-    private Dictionary<PlayerRef, Vector3> cardPositions;
-    private Vector3[] cardSlots = new Vector3[2];
+    using Fusion;
+    using Scripts.Core;
+    using Scripts.StateManagement.Core;
+    using Scripts.StateManagement.StateManagers;
+    using System.Collections.Generic;
+    using UnityEngine;
 
-    public GameplayState(GameStateManager stateManager) : base(stateManager)
+    public class GameplayState : BaseGameState
     {
-        stateType = GameStateType.Gameplay;
-        sceneName = stateType.ToString();
+        private Dictionary<PlayerRef, Vector3> cardPositions;
+        private Vector3[] cardSlots = new Vector3[2];
 
-        cardSlots = Main.instance.data.gameData.cardSlotsPos;
-        cardPositions = Main.instance._playerCardPositions;
-
-        MainEventBus.OnAssignCardSlots += AssignCardPositions;
-    }
-
-    public void AssignCardPositions(NetworkRunner runner)
-    {
-        int i = 0;
-        foreach (var player in runner.ActivePlayers)
+        public GameplayState(GameStateManager stateManager) : base(stateManager)
         {
-            if (!cardPositions.ContainsKey(player) && i < cardSlots.Length)
+            stateType = GameStateType.Gameplay;
+            sceneName = stateType.ToString();
+
+            cardSlots = Main.instance.data.gameData.cardSlotsPos;
+            cardPositions = Main.instance._playerCardPositions;
+
+            MainEventBus.OnAssignCardSlots += AssignCardPositions;
+        }
+
+        public void AssignCardPositions(NetworkRunner runner)
+        {
+            int i = 0;
+            foreach (var player in runner.ActivePlayers)
             {
-                cardPositions[player] = cardSlots[i];
-                i++;
+                if (!cardPositions.ContainsKey(player) && i < cardSlots.Length)
+                {
+                    cardPositions[player] = cardSlots[i];
+                    i++;
+                }
             }
         }
     }
-
 }

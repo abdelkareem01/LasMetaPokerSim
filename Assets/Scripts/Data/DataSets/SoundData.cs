@@ -1,8 +1,10 @@
-using System;
-using UnityEngine;
-
-[Serializable]
-public class SoundData
+namespace Scripts.Data.DataSets
 {
-   //todo
+    using System;
+
+    [Serializable]
+    public class SoundData
+    {
+        //todo
+    }
 }

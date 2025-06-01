@@ -1,11 +1,15 @@
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "DataCollection", menuName = "ScriptableObjects/DataCollection")]
-public class DataCollection : ScriptableObject
+namespace Scripts.Data
 {
-    public static string path = "Data/DataCollection";
+    using Scripts.Data.DataSets;
+    using UnityEngine;
 
-    public PlayerData playerData;
-    public NetworkData networkData;
-    public GameData gameData;
+    [CreateAssetMenu(fileName = "DataCollection", menuName = "ScriptableObjects/DataCollection")]
+    public class DataCollection : ScriptableObject
+    {
+        public static string path = "Data/DataCollection";
+
+        public PlayerData playerData;
+        public NetworkData networkData;
+        public GameData gameData;
+    }
 }
