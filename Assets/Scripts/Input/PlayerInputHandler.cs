@@ -12,6 +12,7 @@ public class PlayerInputHandler : SimulationCallbackHandler
         playerInputData.playerButtons.Set(PlayerButtons.Right, Input.GetKey(KeyCode.D));
         playerInputData.playerButtons.Set(PlayerButtons.Left, Input.GetKey(KeyCode.A));
         playerInputData.playerButtons.Set(PlayerButtons.RequestDeal, Input.GetKey(KeyCode.G));
+        playerInputData.playerButtons.Set(PlayerButtons.ToggleUI, Input.GetKey(KeyCode.T));
 
         if (Application.isFocused)
         {

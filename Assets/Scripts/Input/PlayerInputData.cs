@@ -9,6 +9,7 @@ enum PlayerButtons
     Right = 3,
     Left = 4,
     RequestDeal = 5,
+    ToggleUI = 6,
 }
 
 public struct PlayerInputData : INetworkInput

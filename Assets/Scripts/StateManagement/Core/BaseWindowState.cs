@@ -4,7 +4,7 @@ public enum WindowStateType
 {
      StartupScreen = 0,
      GameplayHUD = 1,
-     LoginScreen = 2,
+     HomeScreen = 2,
 }
 
 public class BaseWindowState : BaseState<BaseWindowState>

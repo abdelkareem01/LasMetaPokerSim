@@ -14,7 +14,8 @@ public class Main : MonoBehaviour
     public NetworkManager networkManager;
     public PlayerManager playerManager;
     public FusionCallbacks callbacks;
-    public AudioSource audio;
+    public AudioSource mainAudioSrc;
+    public Light pointLight;
 
     [HideInInspector]
     public DataCollection data;
@@ -30,6 +31,7 @@ public class Main : MonoBehaviour
         DontDestroyOnLoad(this);
         DontDestroyOnLoad(networkRunnerGO);
         data = Resources.Load<DataCollection>(DataCollection.path);
+        pointLight.enabled = true;
     }
 
     void Start()

@@ -14,8 +14,12 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private float mouseSensitivity;
     private float xMouseOffset = 0f;
     private float yMouseOffset = 0f;
-
+    
     private Camera mainCam;
+
+    private bool mouseIsVisible;
+    private bool mouseIsLocked;
+    private bool trackMouseMovement;
 
     public void Awake()
     {
@@ -30,7 +34,9 @@ public class PlayerController : NetworkBehaviour
             networkManager.AddCallbacks(playerInputHandler);
 
             Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            Cursor.visible = mouseIsVisible = false;
+            mouseIsLocked = true;
+            trackMouseMovement = true;
 
             Debug.Log($"[PlayerController] Spawned | InputAuthority: {Object.InputAuthority} | IsLocal: {HasInputAuthority}");
         }
@@ -38,7 +44,7 @@ public class PlayerController : NetworkBehaviour
 
     private void LateUpdate()
     {
-        if (!HasInputAuthority || mainCam.transform == null || cameraPos == null) return;
+        if (!HasInputAuthority || mainCam.transform == null || cameraPos == null || !trackMouseMovement) return;
 
         Vector2 prespectiveDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * mouseSensitivity;
 
@@ -77,6 +83,15 @@ public class PlayerController : NetworkBehaviour
         {
             MainEventBus.OnRequestDeal?.Invoke(networkManager.GetPlayer());
         }
+
+        if (pressed.IsSet(PlayerButtons.ToggleUI))
+        {
+            Cursor.lockState = MouseLockDecider(!mouseIsLocked);
+            Cursor.visible = mouseIsVisible = !mouseIsVisible;
+
+            mouseIsLocked = !mouseIsLocked;
+            trackMouseMovement = !trackMouseMovement;
+        }
     }
 
     public override void Despawned(NetworkRunner runner, bool hasState)
@@ -87,5 +102,16 @@ public class PlayerController : NetworkBehaviour
     public void MovePlayer(Vector3 amount)
     {
         transform.Translate(amount * 5f * networkManager.GetDeltaTime());
+    }
+
+    private CursorLockMode MouseLockDecider(bool lockMode)
+    {
+        switch(lockMode)
+        {
+        case true:
+          return CursorLockMode.Locked;
+        case false:
+          return CursorLockMode.None;
+        }
     }
 }

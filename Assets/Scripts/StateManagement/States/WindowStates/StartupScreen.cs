@@ -14,7 +14,7 @@ public class StartupScreen : BaseWindowState
         CanvasHelper.Instance.startup_Loadingtxt.SetActive(true);
         MainEventBus.OnNetworkReady += () =>
         {
-            StateManager.ChangeState(WindowStateType.LoginScreen);
+            StateManager.ChangeState(WindowStateType.HomeScreen);
         };
     }
 

@@ -24,7 +24,7 @@ public class WindowStateManager : BaseStateManager<BaseWindowState>
 
     public override void Init()
     {
-        windowStates.Add(WindowStateType.LoginScreen, new LoginScreen(this, CanvasHelper.Instance.login_Canvas));
+        windowStates.Add(WindowStateType.HomeScreen, new HomeScreen(this, CanvasHelper.Instance.home_Canvas));
         windowStates.Add(WindowStateType.StartupScreen, new StartupScreen(this, CanvasHelper.Instance.startup_Canvas));
         windowStates.Add(WindowStateType.GameplayHUD, new GameplayHUD(this, CanvasHelper.Instance.gamplayHUD_Canvas));
 

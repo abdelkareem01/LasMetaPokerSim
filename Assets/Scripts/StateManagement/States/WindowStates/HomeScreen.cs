@@ -2,16 +2,16 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoginScreen : BaseWindowState
+public class HomeScreen : BaseWindowState
 {
     private Button startBtn;
     private Button exitBtn;
 
-    public LoginScreen(WindowStateManager manager, GameObject canvas)
+    public HomeScreen(WindowStateManager manager, GameObject canvas)
         : base(manager, canvas)
     {
-        startBtn = CanvasHelper.Instance.login_StartBtn;
-        exitBtn = CanvasHelper.Instance.login_exitBtn;
+        startBtn = CanvasHelper.Instance.home_StartBtn;
+        exitBtn = CanvasHelper.Instance.home_exitBtn;
     }
 
     public override void OnEnter(BaseWindowState previousState, object data)
